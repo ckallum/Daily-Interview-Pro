@@ -12,8 +12,8 @@ def valuesatheight(root, height):
     if height == 1:
         return [root.value]
 
-    rightres = valuesAtHeight(root.right, height - 1)
-    leftres = valuesAtHeight(root.left, height - 1)
+    rightres = valuesatheight(root.right, height - 1)
+    leftres = valuesatheight(root.left, height - 1)
 
     if not (rightres or leftres):
         if rightres:
@@ -31,7 +31,7 @@ def main():
     a.left.left = Node(4)
     a.left.right = Node(5)
     a.right.right = Node(7)
-    assert valuesAtHeight(a, 3) == [7, 5, 4]
+    assert valuesatheight(a, 3) == [7, 5, 4]
 
 
 if __name__ == '__main__':
