@@ -18,8 +18,7 @@ def count_islands(grid):
                         grid[point[0]][point[1]] = 2
                     elif grid[point[0]][point[1]] == 2:
                         count -= 1
-                    else:
-                        grid[point[0]][point[1]] = -1
+
                 print(grid[0], '\n', grid[1], '\n', grid[2], '\n', grid[3], '\n')
     return count
 
@@ -28,7 +27,7 @@ def main():
     assert count_islands([[1, 1, 0, 0, 0],
                           [0, 1, 0, 0, 1],
                           [1, 0, 0, 1, 1],
-                          [0, 1, 1, 0, 0]]) == 3
+                          [0, 0, 0, 0, 0]]) == 3
 
 
 if __name__ == '__main__':
