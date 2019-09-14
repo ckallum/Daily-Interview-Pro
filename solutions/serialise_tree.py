@@ -13,9 +13,9 @@ class Node:
         result = ''
         result += str(self.val)
         if self.left:
-            result += str(self.left)
+            result += self.left.print_self()
         if self.right:
-            result += str(self.right)
+            result += self.right.print_self()
         return result
 
 
@@ -26,18 +26,25 @@ def serialise_node(node):
 
 
 def deserialize_node(serial):
-    node_queue = deque(serial.split())
+    node_queue = serial.split()
     return deserialize(node_queue)
 
 
 def deserialize(node_queue):
     if not node_queue:
-        return None
+        return None, None
+    node_queue = deque(node_queue)
     next_val = node_queue.popleft()
+    print(node_queue)
     if next_val == '#':
-        return None, node_queue
+        print("hi", node_queue)
+
+        return None, list(node_queue)
     next_node = Node(next_val)
-    next_node.left, node_queue = deserialize(node_queue)
+    next_node.left, node_queue = deserialize(list(node_queue))
+    if not node_queue:
+        return next_node, None
+
     next_node.right, node_queue = deserialize(node_queue)
     return next_node, node_queue
 
@@ -50,8 +57,7 @@ def main():
     tree.right = Node(4)
     tree.right.right = Node(7)
     assert serialise_node(tree) == "132##5##4#7##"
-    deserialize_node(serialise_node(tree)).print_self()
-    # assert deserialize_node(serialise_node(tree)).print_self() == "132547"
+    assert deserialize_node(serialise_node(tree))[0].print_self() == "132547"
 
 
 if __name__ == '__main__':
