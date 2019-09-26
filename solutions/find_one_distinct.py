@@ -7,6 +7,11 @@ def find_single_num(numbers):
             if number & x:
                 sum_at_bit_i += 1
 
+        """
+            If there is an extra one at the end of ANDing all the numbers at that bit
+            then we know that the distinct number also has a one at that bit, and therefore
+            allows us to continue building the 32 bit number.
+        """
         if sum_at_bit_i % 2:
             result = result | x
     return result
