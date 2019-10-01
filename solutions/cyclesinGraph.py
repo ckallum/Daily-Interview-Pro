@@ -24,6 +24,7 @@ def find_cycle(graph, parent, node, visited=None):
                 return True
     return False
 
+
 def main():
     graph = {
         'a': {'a2': {}, 'a3': {}},
