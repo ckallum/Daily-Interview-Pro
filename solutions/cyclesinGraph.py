@@ -7,12 +7,15 @@ def find_cycle(graph, parent, node, visited=None):
                 print(child)
                 visited[child] = False
     visited[node] = True
-    if parent != "None":
+    if parent:
+        # if the node has more children in the graph
         if graph[parent][node]:
             for neighbour in graph[node]:
                 if not visited[neighbour]:
                     if find_cycle(graph, node, neighbour, visited):
                         return True
+                # If the neighbour is visited already and the neighbour is not the parent we are previously connecting
+                # from, then there is a cycle
                 elif parent != neighbour:
                     return True
     else:
@@ -32,7 +35,7 @@ def main():
         'c': {}
     }
     graph['c'] = graph
-    assert find_cycle(graph, "None", 'a') == True
+    assert find_cycle(graph, None, 'a')
 
 
 if __name__ == '__main__':
