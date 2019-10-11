@@ -2,7 +2,7 @@ def hops(numbers):
     numbers_dict = {x: False for x in range(len(numbers))}
     numbers_dict[0] = True
     for index, number in enumerate(numbers):
-        if numbers_dict[index] == True:
+        if numbers_dict[index]:
             if index + number in numbers_dict:
                 numbers_dict[index + number] = True
 
