@@ -1,5 +1,11 @@
 def find_missing_ints(numbers):
-    return [x for x in range(1, len(numbers)) if x not in numbers]
+    # return [x for x in range(1, len(numbers)) if x not in numbers]
+    numbers = sorted(numbers)
+    result = []
+    for index, number in enumerate(numbers):
+        if number != index + 1:
+            result.append(index+1)
+    return result
 
 
 def main():
