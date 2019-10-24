@@ -1,20 +1,16 @@
 from copy import copy
 
 
-def reverse_num(temp):
+def is_palindrome(number):
+    if abs(number) != number:
+        number = abs(number)
+    temp = copy(number)
     reverse = 0
     while temp > 0:
         reverse *= 10
         reverse += temp % 10
         temp //= 10
-    return reverse
-
-
-def is_palindrome(number):
-    if abs(number) != number:
-        number = abs(number)
-    temp = copy(number)
-    return reverse_num(temp) == number
+    return reverse == number
 
 
 def main():
