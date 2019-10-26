@@ -22,10 +22,19 @@ def most_freq_subtree_sum(root, count_dict):
         sub_sum = root.val + root.left.val + root.right.val
         count_dict[sub_sum] += 1
     return r, max(count_dict, key=count_dict.get)
+
+
 # fill this in.
 
 
 def main():
     default = defaultdict(int)
     root = Node(3, Node(1, Node(1), Node(1)), Node(-3, Node(6), Node(0)))
-    assert (most_freq_subtree_sum(root, default))[1] == 3
+    assert (most_freq_subtree_sum(root, default)) == (9, 3)
+    r = Node(3, Node(1), Node(-3))
+    assert (most_freq_subtree_sum(r, default))[1] == 1
+    assert (most_freq_subtree_sum(r, default))[0] == 1
+
+
+if __name__ == '__main__':
+    main()
