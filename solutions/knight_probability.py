@@ -1,3 +1,10 @@
+"""
+    We are using recursion because the probability of staying on the board on the current step
+    at the current location is the sum of the probabilities of staying on the board at every
+    possible new position with k-1 steps times the probability of choosing that new location.
+"""
+
+
 def is_knight_on_board(x, y, k, cache={}):
     if (x, y, k) in cache:
         return cache[(x, y, k)]
@@ -6,7 +13,6 @@ def is_knight_on_board(x, y, k, cache={}):
         return 0
     if not k:
         return 1
-
     moves = valid_moves(x, y)
     probabilities = [is_knight_on_board(i, j, k - 1) for i, j in moves]
     cache[(x, y, k)] = sum(probabilities) / len(moves)
