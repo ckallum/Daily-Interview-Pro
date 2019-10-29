@@ -1,6 +1,7 @@
 def is_knight_on_board(x, y, k, cache={}):
     if (x, y, k) in cache:
         return cache[(x, y, k)]
+    ## Memoization, as a knight can jump back to a position it came from, we do not want to repeat the calculation.
     if not (0 <= x <= 7 and 0 <= y <= 7):
         return 0
     if not k:
