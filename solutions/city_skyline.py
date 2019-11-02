@@ -4,8 +4,7 @@ import heapq
 def generate_skyline(buildings):
     tallest = []
     skyline = []
-    # We are adding the extra building to pad for double the buildings when we
-    # iterating down the skyline
+    # We are adding the extra buildings to add when the skyline ends and goes back to 0.
     buildings += [(x + 1, x + 1, 0) for (_, x, _) in buildings]
     # Sorts by the first value in tuple, if equal sort by the second.
     # i.e. prioritise sorting by starting index, if it is the same then prioritise largest height
