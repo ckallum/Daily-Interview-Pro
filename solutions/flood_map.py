@@ -29,7 +29,6 @@ def find_high_points(grid):
     return grid
 
 
-
 def find_plateau(grid):
     for row in range(len(grid)):
         for col in range(len(grid[0])):
