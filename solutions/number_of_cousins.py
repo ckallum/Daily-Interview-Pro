@@ -8,25 +8,41 @@ class Node(object):
         self.right = right
 
 
-def count_cousins(root, val):
-    queue = deque([(root, 0)])
-    level_nodes = []
-    level = 0
-    while queue:
-        current = queue.popleft()
-        if current[0].value == val:
-            return level_nodes + [x[0].value for x in queue if x[1] == level]
-        if current[1] != level:
-            level_nodes = [current[0].value]
-            level = current[1]
-        else:
-            level_nodes.append(current[0].value)
-        if current[0].left:
-            queue.append((current[0].left, level + 1))
-        if current[0].right:
-            queue.append((current[0].right, level + 1))
+"""
+1. find parent of node and its level
+2. traverse tree and append all children at that level
+    - if node is parent return None
+"""
 
-    return level_nodes
+
+def find_level(root, val, parent, level):
+    if not root:
+        return None
+    if root.value == val:
+        return parent, level
+
+    right = find_level(root.right, val, root, level + 1)
+    left = find_level(root.right, val, root, level + 1)
+    return right if right else left
+
+
+def get_cousins(root, val, parent, height):
+    result = []
+    if not root:
+        return []
+    if root.value == parent.value:
+        return []
+    if height == 0:
+        return [root.value]
+    result.extend(get_cousins(root.right, val, parent, height - 1))
+    result.extend(get_cousins(root.left, val, parent, height - 1))
+    print(result)
+    return result
+
+
+def count_cousins(root, val):
+    parent, height = find_level(root, val, None, 0)
+    return get_cousins(root, val, parent, height)
 
 
 def main():
@@ -36,7 +52,7 @@ def main():
     root.left.right = Node(6)
     root.right = Node(3)
     root.right.right = Node(5)
-    assert (count_cousins(root, 5)) == [4, 6]
+    assert (count_cousins(root, 5)) == [6, 4]
 
 
 if __name__ == '__main__':
