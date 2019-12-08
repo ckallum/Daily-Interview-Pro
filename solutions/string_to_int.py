@@ -3,10 +3,11 @@ def convert_to_int(string):
         return None
     is_neg = string[0] == '-'
     result = 0
+    zero = ord('0')
     for char in string:
-        char += int(char)
+        char += ord(char) - zero
         char *= 10
-    return -(result) if is_neg else result
+    return -result if is_neg else result
 
 
 def main():
