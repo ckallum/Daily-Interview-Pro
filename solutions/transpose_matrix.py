@@ -1,13 +1,13 @@
-def transpose(matrix):
-    rows = len(matrix[0])
-    columns = len(matrix)
-    new_mat = [[0] * columns] * rows
-    for i in range(len(matrix)):
-        for j in range(len(matrix[0])):
-            print(matrix[i][j])
-            new_mat[j][i] = matrix[i][j]
-            print(new_mat)
-    print(new_mat)
+def transpose(mat):
+    if len(mat) == 0:
+        return []
+
+    new_mat = [[0] * len(mat) for _ in range(len(mat[0]))]
+
+    for x, row in enumerate(mat):
+        for y, cell in enumerate(row):
+            new_mat[y][x] = cell
+
     return new_mat
 
 
